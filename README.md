@@ -42,6 +42,5 @@ Hệ thống bình luận sử dụng Giscus (kết nối với GitHub Discussio
 
 Dự án này được phát triển và thiết kế bởi **NamGT**. Mọi sao chép vui lòng để lại nguồn gốc tác giả.
 
----
-
-https://cdn.discordapp.com/attachments/1515654020017029160/1520297804524687470/Messenger_creation_2CFFCC16-A54E-4F0D-8AED-DF7029796C71.jpg?ex=6a40af2a&is=6a3f5daa&hm=31dfd264455af82953bbe9c0dd34698a56003c2394d830e26b0d0c2a42fa9883&
+----
+Trang web đã được bảo vệ bởi [Cloudflare](https://cloudflare.com)
