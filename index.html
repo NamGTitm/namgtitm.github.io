@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NamGT - Portfolio cá nhân. Developer thành thạo HTML, Node.js, TypeScript, Lua/Luau, Python. Đến từ Bình Định, Việt Nam.">
+    <meta name="keywords" content="NamGT, portfolio, developer, HTML, Node.js, TypeScript, Lua, Luau, Python, Bình Định, Việt Nam">
+    <meta name="author" content="NamGT">
+    <!-- Open Graph -->
+    <meta property="og:title" content="NamGT — Portfolio">
+    <meta property="og:description" content="Developer thành thạo HTML, Node.js, TypeScript, Lua/Luau, Python. Đến từ Bình Định, Việt Nam. Chia sẻ source miễn phí cho cộng đồng.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://namgt.xyz">
+    <meta property="og:image" content="https://namgt.xyz/og-image.jpg">
+    <meta property="og:locale" content="vi_VN">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NamGT — Portfolio">
+    <meta name="twitter:description" content="Developer thành thạo HTML, Node.js, TypeScript, Lua/Luau, Python. Chia sẻ source miễn phí.">
+    <meta name="twitter:image" content="https://namgt.xyz/og-image.jpg">
+    <title>NamGT — Portfolio</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="favicon.jpg">
+    <link rel="apple-touch-icon" href="favicon.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // Set theme/lang before render to avoid flashing
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+        const savedLang = localStorage.getItem('lang');
+        if (savedLang) document.documentElement.setAttribute('lang', savedLang);
+    </script>
+</head>
+<body>
+    <!-- Skip Navigation (Accessibility) -->
+    <a href="#main-content" class="skip-nav" id="skip-nav"><span class="vi">Bỏ qua đến nội dung chính</span><span class="en">Skip to main content</span></a>
+
+    <!-- Page Loader -->
+    <div class="page-loader" id="page-loader" role="status" aria-label="Loading">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <span class="logo-bracket">&lt;</span>NamGT<span class="logo-bracket"> /&gt;</span>
+            </div>
+            <div class="loader-bar">
+                <div class="loader-progress" id="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Player -->
+    <div class="audio-player" id="audio-player" aria-label="Audio Player">
+        <button class="audio-toggle" id="audio-toggle" aria-label="Toggle audio" title="Audio">
+            <svg class="audio-icon-on" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+            </svg>
+            <svg class="audio-icon-off" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <line x1="23" y1="9" x2="17" y2="15"/>
+                <line x1="17" y1="9" x2="23" y2="15"/>
+            </svg>
+        </button>
+        <div class="audio-visualizer" id="audio-visualizer">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <!-- Particle canvas background -->
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main Navigation">
+        <div id="reading-progress"></div>
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo" aria-label="NamGT - Home">
+                <span class="logo-bracket">&lt;</span>NamGT<span class="logo-bracket"> /&gt;</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#hero" class="nav-link active"><span class="vi">Trang chủ</span><span class="en">Home</span></a></li>
+                <li><a href="#about" class="nav-link"><span class="vi">Giới thiệu</span><span class="en">About</span></a></li>
+                <li><a href="#skills" class="nav-link"><span class="vi">Kỹ năng</span><span class="en">Skills</span></a></li>
+                <li><a href="#projects" class="nav-link"><span class="vi">Dự án</span><span class="en">Projects</span></a></li>
+                <li><a href="#interests" class="nav-link"><span class="vi">Sở thích</span><span class="en">Interests</span></a></li>
+                <li><a href="#sources" class="nav-link"><span class="vi">Chia sẻ</span><span class="en">Sources</span></a></li>
+                <li><a href="#contact" class="nav-link"><span class="vi">Liên hệ</span><span class="en">Contact</span></a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="nav-counter" title="Profile Views">
+                    <img src="https://komarev.com/ghpvc/?username=namgtitm-github-io&label=Views&color=111118&style=flat-square" alt="Views" />
+                </div>
+                <button class="nav-btn theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="nav-btn lang-toggle" id="lang-toggle" aria-label="Toggle Language">
+                    <span class="lang-text vi">EN</span>
+                    <span class="lang-text en">VI</span>
+                </button>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-avatar">
+                <div class="avatar-ring">
+                    <img src="avatar.png" alt="NamGT Avatar" class="avatar-img" id="avatar-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="avatar-placeholder" style="display:none">
+                        <span>NG</span>
+                    </div>
+                </div>
+                <div class="avatar-status" aria-label="Status: Online"></div>
+            </div>
+            <div class="hero-greeting">
+                <span class="greeting-line"></span>
+                <span class="greeting-text"><span class="vi">Xin chào, tôi là</span><span class="en">Hello, I am</span></span>
+            </div>
+            <h1 class="hero-name">
+                <span class="name-main">Nam<span class="accent">GT</span></span>
+            </h1>
+            <p class="hero-tagline" aria-live="polite">
+                <span class="typewriter" id="typewriter"></span>
+                <span class="cursor" aria-hidden="true">|</span>
+            </p>
+            <div class="hero-badges">
+                <span class="badge"><span class="badge-icon">🇻🇳</span> <span class="vi">Việt Nam</span><span class="en">Vietnam</span></span>
+                <span class="badge"><span class="badge-icon">💻</span> Developer</span>
+                <span class="badge"><span class="badge-icon">🎁</span> Open Source</span>
+            </div>
+            <div class="hero-cta">
+                <a href="#about" class="btn btn-primary"><span class="vi">Tìm hiểu thêm</span><span class="en">Learn More</span></a>
+                <a href="#contact" class="btn btn-outline"><span class="vi">Liên hệ</span><span class="en">Contact</span></a>
+            </div>
+            <!-- Terminal Detection -->
+            <div class="terminal-widget" id="terminal-widget">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span class="dot dot-red"></span>
+                        <span class="dot dot-yellow"></span>
+                        <span class="dot dot-green"></span>
+                    </div>
+                    <span class="terminal-title">root@server:~</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line" id="term-line-1">
+                        <span class="term-prompt">root@server:~$</span>
+                        <span class="term-text"><span class="vi">Đã phát hiện ra bạn!</span><span class="en">You've been detected!</span></span>
+                    </div>
+                    <div class="terminal-line" id="term-line-2">
+                        <span class="term-warn">⚠</span>
+                        <span class="term-prompt">root@server:~$</span>
+                        <span class="term-text">OS: <span class="term-green" id="term-os"><span class="vi">đang dò...</span><span class="en">detecting...</span></span> | Browser: <span class="term-green" id="term-browser"><span class="vi">đang dò...</span><span class="en">detecting...</span></span></span>
+                    </div>
+                    <div class="terminal-line" id="term-line-3">
+                        <span class="term-prompt">root@server:~$</span>
+                        <span class="term-text"><span class="vi">Xác định IP:</span><span class="en">Resolving IP:</span> <span class="term-red" id="term-ip"><span class="vi">đang dò...</span><span class="en">detecting...</span></span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">01.</span>
+                <h2 class="section-title"><span class="vi">Giới thiệu</span><span class="en">About Me</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p class="vi-block">Xin chào! Tôi là <strong>NamGT</strong>, một <strong>developer</strong> đam mê <strong>Khoa học máy tính</strong> đến từ <strong>Bình Định, Việt Nam</strong>. Tôi thuộc dân tộc Kinh và sử dụng tiếng Việt như ngôn ngữ mẹ đẻ.</p>
+                    <p class="en-block">Hello! I am <strong>NamGT</strong>, a <strong>developer</strong> passionate about <strong>Computer Science</strong> from <strong>Binh Dinh, Vietnam</strong>.</p>
+                    
+                    <p class="vi-block">Tôi thành thạo nhiều ngôn ngữ lập trình bao gồm <strong>HTML, Node.js, TypeScript, Lua/Luau</strong> và <strong>Python</strong>. Máy tính là một phần không thể thiếu trong cuộc sống của tôi.</p>
+                    <p class="en-block">I am proficient in several programming languages including <strong>HTML, Node.js, TypeScript, Lua/Luau</strong>, and <strong>Python</strong>. Computers are an indispensable part of my life.</p>
+                    
+                    <p class="vi-block">Tôi là một người yêu chuộng hòa bình, tôn trọng bản quyền và các quyền sở hữu trí tuệ. Tôi cũng thường xuyên chia sẻ các tài nguyên miễn phí cho cộng đồng.</p>
+                    <p class="en-block">I am a peace-lover who respects copyright and intellectual property rights. I also frequently share free resources with the community.</p>
+                </div>
+                <div class="about-card">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-icon" aria-hidden="true">📍</span>
+                            <div>
+                                <span class="info-label"><span class="vi">Quê quán</span><span class="en">Location</span></span>
+                                <span class="info-value"><span class="vi">Bình Định, Việt Nam</span><span class="en">Binh Dinh, Vietnam</span></span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon" aria-hidden="true">🌐</span>
+                            <div>
+                                <span class="info-label"><span class="vi">Ngôn ngữ</span><span class="en">Language</span></span>
+                                <span class="info-value"><span class="vi">Tiếng Việt</span><span class="en">Vietnamese</span></span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon" aria-hidden="true">🕐</span>
+                            <div>
+                                <span class="info-label"><span class="vi">Múi giờ</span><span class="en">Timezone</span></span>
+                                <span class="info-value">UTC+7</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon" aria-hidden="true">👤</span>
+                            <div>
+                                <span class="info-label"><span class="vi">Dân tộc</span><span class="en">Ethnicity</span></span>
+                                <span class="info-value"><span class="vi">Kinh</span><span class="en">Kinh</span></span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon" aria-hidden="true">🏛️</span>
+                            <div>
+                                <span class="info-label"><span class="vi">Biểu tượng</span><span class="en">Symbol</span></span>
+                                <span class="info-value"><span class="vi">Tượng vua Quang Trung</span><span class="en">Emperor Quang Trung Statue</span></span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon" aria-hidden="true">🚭</span>
+                            <div>
+                                <span class="info-label"><span class="vi">Lối sống</span><span class="en">Lifestyle</span></span>
+                                <span class="info-value"><span class="vi">Không hút thuốc</span><span class="en">Non-smoker</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section section-alt" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">02.</span>
+                <h2 class="section-title"><span class="vi">Kỹ năng lập trình</span><span class="en">Programming Skills</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-showcase">
+                <div class="skill-item">
+                    <div class="skill-icon-wrap"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg></div>
+                    <div class="skill-details">
+                        <h3>HTML / CSS</h3>
+                        <p><span class="vi">Xây dựng giao diện web chuẩn, responsive và hiện đại.</span><span class="en">Building standard, responsive, and modern web interfaces.</span></p>
+                    </div>
+                    <div class="skill-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"><div class="skill-fill" data-level="95"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-wrap"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="4"/></svg></div>
+                    <div class="skill-details">
+                        <h3>Node.js</h3>
+                        <p><span class="vi">Phát triển backend, API và ứng dụng server-side với JavaScript runtime.</span><span class="en">Developing backend, APIs, and server-side apps with JavaScript runtime.</span></p>
+                    </div>
+                    <div class="skill-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"><div class="skill-fill" data-level="90"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-wrap"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 7h4v4H7z"/><path d="m17 17-4-4"/></svg></div>
+                    <div class="skill-details">
+                        <h3>TypeScript</h3>
+                        <p><span class="vi">Viết code type-safe, dễ bảo trì cho các dự án quy mô lớn.</span><span class="en">Writing type-safe, maintainable code for large-scale projects.</span></p>
+                    </div>
+                    <div class="skill-bar" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"><div class="skill-fill" data-level="88"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-wrap"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-1.2 0-2.4.6-3 1.7A3.6 3.6 0 0 0 4.6 9c-1 .6-1.7 1.8-1.7 3s.7 2.4 1.7 3c-.3 1.5.2 3 1.5 3.8a3.6 3.6 0 0 0 4.9.5c.7.7 1.8 1.2 3 1.2s2.3-.5 3-1.2a3.6 3.6 0 0 0 4.9-.5c1.2-.8 1.7-2.3 1.5-3.8 1-.6 1.7-1.8 1.7-3s-.7-2.4-1.7-3A3.6 3.6 0 0 0 19.4 5c-.7-1-1.8-1.7-3-1.7a3.6 3.6 0 0 0-4.4-.3"/><path d="m8 14.5 3-3 2 2 3-3"/></svg></div>
+                    <div class="skill-details">
+                        <h3>Lua / Luau</h3>
+                        <p><span class="vi">Scripting cho game development và các ứng dụng nhúng.</span><span class="en">Scripting for game development and embedded applications.</span></p>
+                    </div>
+                    <div class="skill-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"><div class="skill-fill" data-level="85"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-wrap"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></div>
+                    <div class="skill-details">
+                        <h3>Python</h3>
+                        <p><span class="vi">Automation, scripting, data processing và phát triển ứng dụng đa năng.</span><span class="en">Automation, scripting, data processing, and general-purpose app development.</span></p>
+                    </div>
+                    <div class="skill-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"><div class="skill-fill" data-level="90"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">03.</span>
+                <h2 class="section-title"><span class="vi">Dự án nổi bật</span><span class="en">Featured Projects</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <article class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><rect x="7" y="7" width="10" height="10" rx="1"/></svg></div>
+                        <div class="project-links">
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></a>
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title"><span class="vi">Dự án sắp cập nhật</span><span class="en">Upcoming Project</span></h3>
+                    <p class="project-desc"><span class="vi">Dự án này đang được chuẩn bị. Hãy quay lại sau để xem chi tiết!</span><span class="en">This project is being prepared. Check back later for details!</span></p>
+                    <div class="project-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+                </article>
+                <!-- Project 2 -->
+                <article class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m8 6 4-4 4 4"/><path d="M12 2v10.3"/><rect x="4" y="12" width="16" height="8" rx="2"/><path d="M2 20h20"/></svg></div>
+                        <div class="project-links">
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title"><span class="vi">Dự án sắp cập nhật</span><span class="en">Upcoming Project</span></h3>
+                    <p class="project-desc"><span class="vi">Dự án này đang được chuẩn bị. Hãy quay lại sau để xem chi tiết!</span><span class="en">This project is being prepared. Check back later for details!</span></p>
+                    <div class="project-tech"><span>Node.js</span><span>TypeScript</span></div>
+                </article>
+                <!-- Project 3 -->
+                <article class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 6.1H3"/><path d="M21 12.1H3"/><path d="M15.1 18H3"/></svg></div>
+                        <div class="project-links">
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title"><span class="vi">Dự án sắp cập nhật</span><span class="en">Upcoming Project</span></h3>
+                    <p class="project-desc"><span class="vi">Dự án này đang được chuẩn bị. Hãy quay lại sau để xem chi tiết!</span><span class="en">This project is being prepared. Check back later for details!</span></p>
+                    <div class="project-tech"><span>Lua</span><span>Luau</span><span>Python</span></div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interests Section -->
+    <section class="section section-alt" id="interests">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">04.</span>
+                <h2 class="section-title"><span class="vi">Sở thích &amp; Quan điểm</span><span class="en">Interests &amp; Views</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="interests-grid">
+                <div class="interest-card">
+                    <div class="interest-icon-wrap"><span class="interest-icon">💻</span></div>
+                    <h3><span class="vi">Khoa học máy tính</span><span class="en">Computer Science</span></h3>
+                    <p><span class="vi">Đam mê công nghệ và khoa học máy tính. Máy tính là công cụ không thể thiếu trong cuộc sống hàng ngày của tôi.</span><span class="en">Passionate about tech and computer science. Computers are an indispensable tool in my daily life.</span></p>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon-wrap"><span class="interest-icon">⚽</span></div>
+                    <h3><span class="vi">Bóng đá Ngoại hạng Anh</span><span class="en">Premier League</span></h3>
+                    <p><span class="vi">Người hâm mộ cuồng nhiệt của Giải bóng đá Ngoại hạng Anh (Premier League).</span><span class="en">A passionate fan of the English Premier League.</span></p>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon-wrap"><span class="interest-icon">☮️</span></div>
+                    <h3><span class="vi">Hòa bình</span><span class="en">Peace</span></h3>
+                    <p><span class="vi">Người yêu chuộng hòa bình, luôn hướng đến một thế giới tốt đẹp hơn cho tất cả mọi người.</span><span class="en">A peace-lover, always aiming for a better world for everyone.</span></p>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon-wrap"><span class="interest-icon">⭐</span></div>
+                    <h3><span class="vi">Chủ nghĩa Cộng sản</span><span class="en">Communism</span></h3>
+                    <p><span class="vi">Theo đuổi lý tưởng Chủ nghĩa Cộng sản, hướng đến công bằng và bình đẳng xã hội.</span><span class="en">Pursuing the ideals of Communism, aiming for social justice and equality.</span></p>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon-wrap"><span class="interest-icon">©️</span></div>
+                    <h3><span class="vi">Bản quyền &amp; Sở hữu trí tuệ</span><span class="en">Copyright &amp; IP</span></h3>
+                    <p><span class="vi">Tôn trọng bản quyền và các quyền sở hữu trí tuệ. Luôn trích dẫn nguồn và sử dụng tài liệu một cách có trách nhiệm.</span><span class="en">Respecting copyright and intellectual property rights. Always citing sources responsibly.</span></p>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon-wrap"><span class="interest-icon">🎁</span></div>
+                    <h3><span class="vi">Chia sẻ miễn phí</span><span class="en">Free Sharing</span></h3>
+                    <p><span class="vi">Thường xuyên chia sẻ tài nguyên, source code và kiến thức miễn phí cho cộng đồng.</span><span class="en">Frequently sharing free resources, source code, and knowledge with the community.</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Sources Section -->
+    <section class="section" id="sources">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">05.</span>
+                <h2 class="section-title"><span class="vi">Sources chia sẻ miễn phí</span><span class="en">Free Open Sources</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="sources-content">
+                <div class="sources-hero-text">
+                    <p><span class="vi">Tôi tin rằng kiến thức nên được chia sẻ rộng rãi. Dưới đây là các tài nguyên tôi đã chia sẻ <strong>hoàn toàn miễn phí</strong> cho cộng đồng.</span><span class="en">I believe knowledge should be widely shared. Below are the resources I've shared <strong>completely free</strong> with the community.</span></p>
+                </div>
+                <div class="sources-grid">
+                    <div class="source-card"><div class="source-icon">📦</div><h4>Source Code</h4><p><span class="vi">Các dự án mã nguồn mở, template và boilerplate sẵn sàng sử dụng.</span><span class="en">Open source projects, templates, and ready-to-use boilerplates.</span></p><span class="source-badge">FREE</span></div>
+                    <div class="source-card"><div class="source-icon">🛠️</div><h4>Tools &amp; Scripts</h4><p><span class="vi">Công cụ tiện ích, automation scripts giúp tăng năng suất làm việc.</span><span class="en">Utility tools and automation scripts to increase productivity.</span></p><span class="source-badge">FREE</span></div>
+                    <div class="source-card"><div class="source-icon">📖</div><h4><span class="vi">Tài liệu &amp; Hướng dẫn</span><span class="en">Docs &amp; Guides</span></h4><p><span class="vi">Bài viết, tutorial và tài liệu kỹ thuật bằng tiếng Việt.</span><span class="en">Articles, tutorials, and technical documentation.</span></p><span class="source-badge">FREE</span></div>
+                </div>
+                <div class="sources-cta">
+                    <p class="sources-note"><span class="vi">Liên hệ qua email để nhận thêm tài nguyên hoặc hợp tác dự án.</span><span class="en">Contact via email to get more resources or collaborate on projects.</span></p>
+                    <a href="mailto:contact@namgt.xyz" class="btn btn-primary"><span class="vi">Liên hệ nhận source</span><span class="en">Contact for sources</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section section-alt" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">06.</span>
+                <h2 class="section-title"><span class="vi">Liên hệ</span><span class="en">Contact</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-layout">
+                <div class="contact-info-side">
+                    <p class="contact-text"><span class="vi">Bạn muốn liên hệ với tôi? Hãy gửi tin nhắn qua form bên dưới hoặc email trực tiếp. Tôi sẽ cố gắng phản hồi sớm nhất có thể!</span><span class="en">Want to get in touch? Send a message via the form below or email directly. I'll try to respond as soon as possible!</span></p>
+                    <a href="mailto:contact@namgt.xyz" class="contact-email" id="contact-email">
+                        <span class="email-icon">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        </span>
+                        contact@namgt.xyz
+                    </a>
+                </div>
+                <form class="contact-form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+                    <div class="form-group">
+                        <label for="form-name" class="form-label"><span class="vi">Họ tên</span><span class="en">Name</span></label>
+                        <input type="text" id="form-name" name="name" class="form-input" placeholder="Your Name" required autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="form-email" class="form-label">Email</label>
+                        <input type="email" id="form-email" name="email" class="form-input" placeholder="your@email.com" required autocomplete="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="form-message" class="form-label"><span class="vi">Tin nhắn</span><span class="en">Message</span></label>
+                        <textarea id="form-message" name="message" class="form-input form-textarea" placeholder="..." rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit" id="form-submit">
+                        <span class="btn-text"><span class="vi">Gửi tin nhắn</span><span class="en">Send Message</span></span>
+                        <span class="btn-loading" style="display:none"><span class="vi">Đang gửi...</span><span class="en">Sending...</span></span>
+                    </button>
+                    <p class="form-status" id="form-status" role="alert"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-bracket">&lt;</span>NamGT<span class="logo-bracket"> /&gt;</span>
+                </div>
+                <p class="footer-tagline"><span class="vi">Bình Định, Việt Nam 🇻🇳</span><span class="en">Binh Dinh, Vietnam 🇻🇳</span></p>
+                <div class="footer-social" aria-label="Social Links">
+                    <!-- GitHub -->
+                    <a href="https://github.com/namgtitm" class="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                    </a>
+                    <!-- Facebook -->
+                    <a href="https://facebook.com/hoangnamdz0" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <!-- Discord -->
+                    <a href="https://discord.gg/TFhEgPjGrK" class="social-link" aria-label="Discord" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r="0.5" fill="currentColor"/><path d="M20.9 18.6A17.6 17.6 0 0 0 21 6.4 17.4 17.4 0 0 0 16.5 4a12.3 12.3 0 0 0-.6 1.2 16.1 16.1 0 0 0-7.8 0A12.3 12.3 0 0 0 7.5 4 17.4 17.4 0 0 0 3 6.4a17.6 17.6 0 0 0 .1 12.2A17.4 17.4 0 0 0 7.5 21a12.3 12.3 0 0 0 .8-1.3 11 11 0 0 0 7.4 0c.3.4.5.9.8 1.3a17.4 17.4 0 0 0 4.4-2.4z"/></svg>
+                    </a>
+                    <!-- Email -->
+                    <a href="mailto:contact@namgt.xyz" class="social-link" aria-label="Email">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    </a>
+                </div>
+                <div class="footer-divider"></div>
+                <p class="footer-copy">&copy; 2026 NamGT. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"/>
+        </svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

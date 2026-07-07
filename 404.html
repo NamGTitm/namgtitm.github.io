@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Trang không tồn tại | NamGT</title>
+    <link rel="icon" type="image/jpeg" href="favicon.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            color: #f0f0f5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+            overflow: hidden;
+        }
+        .error-page { max-width: 580px; animation: fadeIn 0.8s ease-out; }
+        .error-code {
+            font-size: clamp(5rem, 15vw, 10rem);
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, #ff4444, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+        .error-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 12px; }
+        .error-desc { color: #9898a6; font-size: 0.95rem; line-height: 1.7; margin-bottom: 32px; }
+        .error-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 32px; font-size: 0.9rem; font-weight: 600;
+            font-family: 'Inter', sans-serif; border-radius: 28px;
+            background: linear-gradient(135deg, #6c63ff, #00d4aa);
+            color: #fff; border: none; cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(108, 99, 255, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .error-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(108, 99, 255, 0.3); }
+        .error-logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem; color: #5e5e6e;
+            margin-top: 48px;
+        }
+        .error-logo span { color: #6c63ff; font-weight: 400; }
+        .error-table {
+            margin-top: 40px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            text-align: left;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+        .error-table-header {
+            padding: 12px 20px;
+            background: rgba(255, 68, 68, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #ff6b6b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .error-table-header::before {
+            content: '⚠';
+            font-size: 0.9rem;
+        }
+        .error-table-row {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 0.82rem;
+        }
+        .error-table-row:last-child { border-bottom: none; }
+        .error-table-key {
+            width: 140px;
+            flex-shrink: 0;
+            padding: 10px 20px;
+            color: #5e5e6e;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .error-table-value {
+            flex: 1;
+            padding: 10px 20px 10px 0;
+            color: #9898a6;
+            word-break: break-all;
+        }
+        .error-table-value .red { color: #ff6b6b; font-weight: 600; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <div class="error-page">
+        <div class="error-code">404</div>
+        <h1 class="error-title">Trang không tồn tại</h1>
+        <p class="error-desc">Xin lỗi, trang bạn đang tìm kiếm không tồn tại hoặc đã bị di chuyển. Hãy quay lại trang chủ nhé!</p>
+        <a href="/" class="error-btn">← Về trang chủ</a>
+        <div class="error-table">
+            <div class="error-table-header">Error Details</div>
+            <div class="error-table-row">
+                <div class="error-table-key">Status</div>
+                <div class="error-table-value"><span class="red">404 Not Found</span></div>
+            </div>
+            <div class="error-table-row">
+                <div class="error-table-key">Timestamp</div>
+                <div class="error-table-value" id="error-time">—</div>
+            </div>
+            <div class="error-table-row">
+                <div class="error-table-key">Request URL</div>
+                <div class="error-table-value" id="error-url">—</div>
+            </div>
+            <div class="error-table-row">
+                <div class="error-table-key">Server</div>
+                <div class="error-table-value">GitHub Pages</div>
+            </div>
+            <div class="error-table-row">
+                <div class="error-table-key">Host</div>
+                <div class="error-table-value">namgt.xyz</div>
+            </div>
+        </div>
+        <div class="error-logo">
+            <span>&lt;</span>NamGT<span> /&gt;</span>
+        </div>
+    </div>
+    <script>
+        document.getElementById('error-url').textContent = window.location.href;
+        document.getElementById('error-time').textContent = new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
+    </script>
+    </div>
+</body>
+</html>
